@@ -7,14 +7,43 @@
   <link rel="icon" href="images/Tesla red.jpeg">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
+  <div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+      <option value="Las Vegas, NV">Current Location</option>
+      <option value="Las Vegas, NV">Current Location</option>
+    </select>
+    <b>End: </b>
+    <select id="end">
+      <option value="">Tesla Supercharger</option>
+    </select>
+  </div>
+  <div id="map"></div>
+
+
+
+
   <header>
   </header>
+  <div id="map"></div>
   <main>
+    <div id="location">Weather?</div>
+
+
+
+
+
   </main>
   <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script type="module" src="/js/main.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCawnHCRLYgXle5MD9udxKMSA5MUpcDOz8&libraries=places&v=weekly"
+    defer>
+      var $key = 'AIzaSyCawnHCRLYgXle5MD9udxKMSA5MUpcDOz8'
+  </script>
 </body>
 </html>

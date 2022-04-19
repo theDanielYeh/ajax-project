@@ -17,7 +17,7 @@ function initMap() {
   });
 
   const request = {
-    query: 'Costco',
+    query: 'Tesla Supercharger',
     fields: ['name', 'geometry']
   };
 
@@ -26,6 +26,8 @@ function initMap() {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i]);
+        console.log(results[i]);
+        console.log(results[i].geometry.location.lat() + ', ' + results[i].geometry.location.lng());
       }
 
       map.setCenter(results[0].geometry.location);
