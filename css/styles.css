@@ -17,6 +17,7 @@ body {
 }
 
 #floating-panel {
+  display: none;
   position: absolute;
   top: 10px;
   left: 25%;

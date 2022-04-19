@@ -1,6 +1,3 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 var $X;
 var $Lat = 'hello';
 var $Lng;
@@ -19,10 +16,8 @@ function success(position) {
   $Lat = position.coords.latitude;
   $Lng = position.coords.longitude;
   console.log(document.querySelector('#start > option').value);
-}
 
-
-// window.addEventListener('onload', initMap());
+initMap();
 function initMap() {
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer();
@@ -75,7 +70,6 @@ function initMap() {
 
           infowindow.setContent(response.results[0].formatted_address);
           infowindow.open(map, marker);
-          console.log(infowindow);
           document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
         } else {
           window.alert("No results found");
@@ -84,14 +78,9 @@ function initMap() {
       .catch((e) => window.alert("Geocoder failed due to: " + e));
   }
   geocodeLatLng(geocoder, map, infowindow);
-
-  onChangeHandler();
-
-  // document.getElementById("start").addEventListener("change", onChangeHandler);
-  // document.getElementById("end").addEventListener("change", onChangeHandler);
+  window.initMap = initMap;
 }
-
-
+}
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   directionsService
@@ -115,7 +104,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
 
 
-window.initMap = initMap;
+
 
 // Below is for weather API //
 
