@@ -52,7 +52,41 @@ function initMap() {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
 
+  // below is reverse geocode
+  const geocoder = new google.maps.Geocoder();
+  const infowindow = new google.maps.InfoWindow();
+
+  function geocodeLatLng(geocoder, map, infowindow) {
+    const latlng = {
+      lat: $Lat,
+      lng: $Lng,
+    };
+
+    geocoder
+      .geocode({ location: latlng })
+      .then((response) => {
+        if (response.results[0]) {
+          map.setZoom(14);
+
+          const marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+          });
+
+          infowindow.setContent(response.results[0].formatted_address);
+          infowindow.open(map, marker);
+          console.log(infowindow);
+          document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
+        } else {
+          window.alert("No results found");
+        }
+      })
+      .catch((e) => window.alert("Geocoder failed due to: " + e));
+  }
+  geocodeLatLng(geocoder, map, infowindow);
+
   onChangeHandler();
+
   // document.getElementById("start").addEventListener("change", onChangeHandler);
   // document.getElementById("end").addEventListener("change", onChangeHandler);
 }
