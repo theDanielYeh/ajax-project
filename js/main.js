@@ -1,5 +1,5 @@
 var $X;
-var $Lat = 'hello';
+var $Lat = 'Hello World';
 var $Lng;
 let service;
 
@@ -98,8 +98,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       directionsRenderer.setDirections(response);
     })
     .catch((e) => window.alert("Directions request failed due to TEST" + status));
-  console.log(document.getElementById("start").value);
-  console.log(document.getElementById("end").value);
 }
 
 
