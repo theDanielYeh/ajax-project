@@ -17,71 +17,74 @@ function success(position) {
   $Lng = position.coords.longitude;
   console.log(document.querySelector('#start > option').value);
 
-initMap();
-function initMap() {
-  const directionsService = new google.maps.DirectionsService();
-  const directionsRenderer = new google.maps.DirectionsRenderer();
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 14,
-    center: { lat: $Lat, lng: $Lng },
-  });
+  initMap();
+  function initMap() {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: { lat: $Lat, lng: $Lng },
+    });
 
-  directionsRenderer.setMap(map);
+    directionsRenderer.setMap(map);
 
-  const request = {
-    query: 'Tesla Supercharger',
-    fields: ['name', 'geometry']
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.findPlaceFromQuery(request, (results, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      for (let i = 0; i < results.length; i++) {
-        var $X = results[i].geometry.location.lat() + ', ' + results[i].geometry.location.lng();
-        document.querySelector("#end > option").value = $X;
-        onChangeHandler();
-      }
-    }
-  });
-
-  const onChangeHandler = function () {
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
-  };
-
-  // below is reverse geocode
-  const geocoder = new google.maps.Geocoder();
-  const infowindow = new google.maps.InfoWindow();
-
-  function geocodeLatLng(geocoder, map, infowindow) {
-    const latlng = {
-      lat: $Lat,
-      lng: $Lng,
+    const request = {
+      query: 'Tesla Supercharger',
+      fields: ['name', 'geometry', 'place_id', 'formatted_address']
     };
 
-    geocoder
-      .geocode({ location: latlng })
-      .then((response) => {
-        if (response.results[0]) {
-          map.setZoom(14);
-
-          const marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-          });
-
-          infowindow.setContent(response.results[0].formatted_address);
-          infowindow.open(map, marker);
-          document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
-        } else {
-          window.alert("No results found");
+    service = new google.maps.places.PlacesService(map);
+    service.findPlaceFromQuery(request, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+        for (let i = 0; i < results.length; i++) {
+          $X = results[i].geometry.location.lat() + ', ' + results[i].geometry.location.lng();
+          document.querySelector("#end > option").value = $X;
+          onChangeHandler();
+          document.querySelector('#chargerDisplay').textContent = results[i].name + ': ' + results[i].formatted_address;
         }
-      })
-      .catch((e) => window.alert("Geocoder failed due to: " + e));
-  }
-  geocodeLatLng(geocoder, map, infowindow);
-  window.initMap = initMap;
+      }
+    });
 
-}
+    const onChangeHandler = function () {
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+    };
+
+    // below is reverse geocode
+    const geocoder = new google.maps.Geocoder();
+    const infowindow = new google.maps.InfoWindow();
+
+    function geocodeLatLng(geocoder, map, infowindow) {
+      const latlng = {
+        lat: $Lat,
+        lng: $Lng,
+      };
+
+      geocoder
+        .geocode({ location: latlng })
+        .then((response) => {
+          if (response.results[0]) {
+            map.setZoom(14);
+
+            // const marker = new google.maps.Marker({
+            //   position: latlng,
+            //   map: map,
+            // });
+
+            infowindow.setContent(response.results[0].formatted_address);
+            // infowindow.open(map, marker);
+            document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
+          } else {
+            window.alert("No results found");
+          }
+        })
+        .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
+    geocodeLatLng(geocoder, map, infowindow);
+    console.log($X);
+
+    window.initMap = initMap;
+    document.querySelector('#homeBolt').setAttribute('src', "/images/emptybolt.png");
+  }
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
