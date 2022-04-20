@@ -39,6 +39,7 @@ function initMap() {
       for (let i = 0; i < results.length; i++) {
         var $X = results[i].geometry.location.lat() + ', ' + results[i].geometry.location.lng();
         document.querySelector("#end > option").value = $X;
+        onChangeHandler();
       }
     }
   });
@@ -79,6 +80,7 @@ function initMap() {
   }
   geocodeLatLng(geocoder, map, infowindow);
   window.initMap = initMap;
+
 }
 }
 
