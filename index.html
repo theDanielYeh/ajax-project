@@ -8,18 +8,20 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+  <script src="https://kit.fontawesome.com/7188dd5dce.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div id="banner">
+    <div id="banner" class="banner">
       <img src="images/banner-icon.png" alt="">
       <a id="locate">Locate</a>
-      <a id="myfavorites">My Favorites</a>
+      <a id="myfavorites" class="myfavorites">My Favorites</a>
     </div>
   </header>
   <div id="map"></div>
   <main>
-    <div id="floating-panel">
+    <div id="floating-panel" class="floating-panel">
       <b>Start: </b>
       <select id="start">
         <option value="">Current Location</option>
@@ -29,9 +31,12 @@
         <option value="">Tesla Supercharger</option>
       </select>
     </div>
-    <div id='locationDisplay'></div>
 
-
+    <div id='locationDisplay' class="locationDisplay"></div>
+    <div class="row">
+      <img id="homeBolt" class="homeBolt" src="" alt="">
+      <div id="chargerDisplay" class="chargerDisplay"></div>
+    </div>
 
 
   </main>
