@@ -166,12 +166,14 @@ document.querySelector('#homeBolt').addEventListener('click', $Save);
 
 function $Save(event) {
   console.log($dataToSave.name);
-  if (event.target.getAttribute('src') === '/images/emptybolt.png') {
-    event.target.setAttribute('src', '/images/bolt.png');
-    $render();
-  } else if (event.target.getAttribute('src') === '/images/bolt.png') {
-    event.target.setAttribute('src', '/images/emptybolt.png');
-  }
+  event.target.setAttribute('src', '/images/bolt.png');
+  $render();
+  // if (event.target.getAttribute('src') === '/images/emptybolt.png') {
+  //   event.target.setAttribute('src', '/images/bolt.png');
+  //   $render();
+  // } else if (event.target.getAttribute('src') === '/images/bolt.png') {
+  //   event.target.setAttribute('src', '/images/emptybolt.png');
+  // }
 }
 
 function $render(event) {
