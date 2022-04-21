@@ -26,7 +26,8 @@
 }
 
 .homeBolt {
-  width: 7%;
+  min-width: 85px;
+  max-width: 85px;
 }
 
 .row {
@@ -37,4 +38,14 @@
 
 .chargerDisplay {
  width: 50%;
+}
+
+.weatherDisplay {
+  display: flex;
+  align-items: center;
+}
+
+.detailedForecast {
+  margin: 0 15%;
+
 }

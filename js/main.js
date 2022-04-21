@@ -1,4 +1,6 @@
 var $X;
+var $Y;
+var $Z;
 var $Lat = 'Hello World';
 var $Lng;
 let service;
@@ -38,9 +40,38 @@ function success(position) {
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         for (let i = 0; i < results.length; i++) {
           $X = results[i].geometry.location.lat() + ', ' + results[i].geometry.location.lng();
+          $Y = results[i].geometry.location.lat();
+          $Z = results[i].geometry.location.lng();
           document.querySelector("#end > option").value = $X;
           onChangeHandler();
           document.querySelector('#chargerDisplay').textContent = results[i].name + ': ' + results[i].formatted_address;
+          // Below is for weather API //
+          console.log($Y);
+          function getPokemonData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.weather.gov/points/' + $Y + ',' + $Z);
+            xhr.responseType = 'json';
+            xhr.addEventListener('load', function () {
+              console.log(xhr.status);
+              console.log(xhr.response);
+              console.log(xhr.response.properties.gridX);
+              if (xhr.status === 200) {
+                var xhrTwo = new XMLHttpRequest();
+                xhrTwo.open('GET', 'https://api.weather.gov/gridpoints/' + xhr.response.properties.gridId + '/' + xhr.response.properties.gridX + ',' + xhr.response.properties.gridY + '/forecast');
+                xhrTwo.responseType = 'json';
+                xhrTwo.addEventListener('load', function () {
+                  console.log(xhrTwo.status);
+                  console.log(xhrTwo.response);
+                  console.log(xhrTwo.response.properties);
+                  document.querySelector('.weatherIcon').setAttribute('src', xhrTwo.response.properties.periods[0].icon);
+                  document.querySelector('.detailedForecast').textContent = xhrTwo.response.properties.periods[0].detailedForecast;
+                });
+                xhrTwo.send();
+              }
+            });
+            xhr.send();
+          }
+          getPokemonData();
         }
       }
     });
@@ -80,7 +111,6 @@ function success(position) {
         .catch((e) => window.alert("Geocoder failed due to: " + e));
     }
     geocodeLatLng(geocoder, map, infowindow);
-    console.log($X);
 
     window.initMap = initMap;
     document.querySelector('#homeBolt').setAttribute('src', "/images/emptybolt.png");
@@ -104,23 +134,3 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     })
     .catch((e) => window.alert("Directions request failed due to TEST" + status));
 }
-
-
-
-
-
-// Below is for weather API //
-
-function getPokemonData() {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.weather.gov/points/39.7456,-97.0892');
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    console.log(xhr.status);
-    console.log(xhr.response);
-    console.log(xhr.response.properties.forecast);
-  });
-  xhr.send();
-}
-
-getPokemonData();
