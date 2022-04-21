@@ -47,5 +47,27 @@
 
 .detailedForecast {
   margin: 0 15%;
+}
 
+.modal {
+  background-color: rgb(0 0 0 / 82.9%);
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+}
+
+.modal-box {
+  position: fixed;
+  padding-top: 3rem;
+  text-align: center;
+  width: 500px;
+  height: 250px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-box > button {
+  margin: 3rem;
+  padding: 0.5rem 1rem;
 }

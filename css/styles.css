@@ -60,6 +60,22 @@ a {
 #banner-icon:hover,
 #locate:hover,
 #myfavorites:hover,
-#homeBolt:hover {
+.homeBolt:hover {
   cursor: pointer;
+}
+
+.modal-box {
+  font-size: 2rem;
+  border: black solid;
+  border-radius: 15px;
+  background-color: #E31937;
+  color: white;
+}
+
+.modal-box > button {
+  font-size: 1.5rem;
+  border-color: white;
+  border-radius: 5px;
+  background: white;
+  color: #E31937;
 }

@@ -222,3 +222,16 @@ function $initialrender(object) {
   $C.textContent = object.name + ': ' + object.address;
   $A.appendChild($C);
 }
+
+// below is section for removing entries //
+document.querySelector('#favorites-dom').addEventListener('click', $toggleModal);
+
+function $toggleModal(event) {
+  if (event.target.tagName === 'IMG') {
+    if (document.querySelector('#modal').getAttribute('class') === '.modal hidden') {
+      document.querySelector('#modal').setAttribute('class','.modal');
+    } else {
+      document.querySelector('#modal').setAttribute('class', '.modal hidden');
+    }
+  }
+}
