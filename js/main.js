@@ -152,3 +152,13 @@ function $Favorites(event) {
   document.querySelector('#locationDisplay').setAttribute('class', 'hidden');
   document.querySelector('#home-row').setAttribute('class', 'hidden');
 }
+
+document.querySelector('#homeBolt').addEventListener('click', $Save);
+
+function $Save(event) {
+  if (event.target.getAttribute('src') === '/images/emptybolt.png') {
+    event.target.setAttribute('src', '/images/bolt.png');
+  } else if (event.target.getAttribute('src') === '/images/bolt.png') {
+    event.target.setAttribute('src', '/images/emptybolt.png');
+  }
+}
