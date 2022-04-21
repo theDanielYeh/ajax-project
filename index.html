@@ -14,12 +14,12 @@
 <body>
   <header>
     <div id="banner" class="banner">
-      <img src="images/banner-icon.png" alt="">
+      <img id="banner-icon" src="images/banner-icon.png" alt="">
       <a id="locate">Locate</a>
       <a id="myfavorites" class="myfavorites">My Favorites</a>
     </div>
   </header>
-  <div id="map"></div>
+  <div id="map" class=""></div>
   <main>
     <div id="floating-panel" class="floating-panel">
       <b>Start: </b>
@@ -32,18 +32,24 @@
       </select>
     </div>
 
-    <div class="weatherDisplay">
+    <div id="weatherDisplay" class="weatherDisplay">
       <div class="weatherHeader"></div>
       <img src="" alt="" class="weatherIcon">
       <div class="detailedForecast"></div>
     </div>
 
     <div id='locationDisplay' class="locationDisplay"></div>
-    <div class="row">
+    <div id="home-row" class="row">
       <img id="homeBolt" class="homeBolt" src="" alt="">
       <div id="chargerDisplay" class="chargerDisplay"></div>
     </div>
-
+    <!-- Below is My Favorites DOM -->
+    <div class="my-favorites-parent-container hidden">
+      <div class="row">
+        <img class="homeBolt" src="images/bolt.png" alt="">
+        <div class="chargerDisplay"></div>
+      </div>
+    </div>
 
   </main>
   <script src="js/data.js"></script>

@@ -14,6 +14,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 .floating-panel {
   display: none;
   position: absolute;
@@ -51,4 +55,10 @@ a {
 .detailedForecast {
     color: white;
     font-size: 1.75rem;
+}
+
+#banner-icon:hover,
+#locate:hover,
+#myfavorites:hover {
+  cursor: pointer;
 }

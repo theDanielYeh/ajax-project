@@ -134,3 +134,21 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     })
     .catch((e) => window.alert("Directions request failed due to TEST" + status));
 }
+
+document.querySelector('#banner-icon').addEventListener('click', $Home);
+document.querySelector('#locate').addEventListener('click', $Home);
+document.querySelector('#myfavorites').addEventListener('click', $Favorites);
+
+function $Home(event) {
+  document.querySelector('#map').setAttribute('class','');
+  document.querySelector('#weatherDisplay').setAttribute('class', 'weatherDisplay');
+  document.querySelector('#locationDisplay').setAttribute('class','locationDisplay');
+  document.querySelector('#home-row').setAttribute('class', 'row');
+}
+
+function $Favorites(event) {
+  document.querySelector('#map').setAttribute('class', 'hidden');
+  document.querySelector('#weatherDisplay').setAttribute('class', 'hidden');
+  document.querySelector('#locationDisplay').setAttribute('class', 'hidden');
+  document.querySelector('#home-row').setAttribute('class', 'hidden');
+}
