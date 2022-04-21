@@ -3,6 +3,7 @@ var $Y;
 var $Z;
 var $Lat = 'Hello World';
 var $Lng;
+var $dataToSave = {};
 let service;
 
 
@@ -45,6 +46,9 @@ function success(position) {
           document.querySelector("#end > option").value = $X;
           onChangeHandler();
           document.querySelector('#chargerDisplay').textContent = results[i].name + ': ' + results[i].formatted_address;
+          $dataToSave["name"] = results[i].name;
+          $dataToSave["address"] = results[i].formatted_address;
+
           // Below is for weather API //
           console.log($Y);
           function getPokemonData() {
@@ -135,15 +139,19 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .catch((e) => window.alert("Directions request failed due to TEST" + status));
 }
 
+// Below section for click events and DOM manipulation //
+
 document.querySelector('#banner-icon').addEventListener('click', $Home);
 document.querySelector('#locate').addEventListener('click', $Home);
 document.querySelector('#myfavorites').addEventListener('click', $Favorites);
+var $favoritesDom = document.querySelector('#favorites-dom');
 
 function $Home(event) {
   document.querySelector('#map').setAttribute('class','');
   document.querySelector('#weatherDisplay').setAttribute('class', 'weatherDisplay');
   document.querySelector('#locationDisplay').setAttribute('class','locationDisplay');
   document.querySelector('#home-row').setAttribute('class', 'row');
+  $favoritesDom.setAttribute('class', 'hidden');
 }
 
 function $Favorites(event) {
@@ -151,14 +159,66 @@ function $Favorites(event) {
   document.querySelector('#weatherDisplay').setAttribute('class', 'hidden');
   document.querySelector('#locationDisplay').setAttribute('class', 'hidden');
   document.querySelector('#home-row').setAttribute('class', 'hidden');
+  $favoritesDom.setAttribute('class', 'my-favorites-parent-container');
 }
 
 document.querySelector('#homeBolt').addEventListener('click', $Save);
 
 function $Save(event) {
+  console.log($dataToSave.name);
   if (event.target.getAttribute('src') === '/images/emptybolt.png') {
     event.target.setAttribute('src', '/images/bolt.png');
+    $render();
   } else if (event.target.getAttribute('src') === '/images/bolt.png') {
     event.target.setAttribute('src', '/images/emptybolt.png');
   }
+}
+
+function $render(event) {
+  var $truefalse = 0;
+  console.log('test');
+  for (var i = 0; i < todos.length; i++) {
+    if ($dataToSave.name === todos[i].name) {
+      $truefalse++;
+      console.log('should not save');
+      break;
+    }
+  };
+  if ($truefalse === 0) {
+    console.log('will save');
+    var $A = document.createElement('div');
+    $A.setAttribute('class','row');
+    $favoritesDom.appendChild($A);
+
+    var $B = document.createElement('img');
+    $B.setAttribute('class', 'homeBolt');
+    $B.setAttribute('src','/images/bolt.png');
+    $A.appendChild($B);
+
+    var $C = document.createElement('div');
+    $C.setAttribute('class', 'chargerDisplay');
+    $C.textContent = $dataToSave.name + ': ' + $dataToSave.address;
+    $A.appendChild($C);
+    todos.push($dataToSave);
+  };
+}
+
+for (var i = 0; i < todos.length; i++) {
+  $initialrender(todos[i]);
+}
+
+function $initialrender(object) {
+  var $A = document.createElement('div');
+  $A.setAttribute('class', 'row');
+  $favoritesDom.appendChild($A);
+
+  var $B = document.createElement('img');
+  $B.setAttribute('class', 'homeBolt');
+  $B.setAttribute('src', '/images/bolt.png');
+  $A.appendChild($B);
+
+  var $C = document.createElement('div');
+  $C.setAttribute('class', 'chargerDisplay');
+  $C.textContent = object.name + ': ' + object.address;
+  $A.appendChild($C);
 }

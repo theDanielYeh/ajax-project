@@ -59,6 +59,7 @@ a {
 
 #banner-icon:hover,
 #locate:hover,
-#myfavorites:hover {
+#myfavorites:hover,
+#homeBolt:hover {
   cursor: pointer;
 }
