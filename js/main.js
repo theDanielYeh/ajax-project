@@ -224,14 +224,39 @@ function $initialrender(object) {
 }
 
 // below is section for removing entries //
+var $R;
+
 document.querySelector('#favorites-dom').addEventListener('click', $toggleModal);
 
 function $toggleModal(event) {
   if (event.target.tagName === 'IMG') {
-    if (document.querySelector('#modal').getAttribute('class') === '.modal hidden') {
-      document.querySelector('#modal').setAttribute('class','.modal');
+    if (document.querySelector('#modal').getAttribute('class') === 'modal hidden') {
+      document.querySelector('#modal').setAttribute('class','modal');
     } else {
-      document.querySelector('#modal').setAttribute('class', '.modal hidden');
+      document.querySelector('#modal').setAttribute('class', 'modal hidden');
     }
+    $R = event.target;
+  }
+}
+
+document.querySelector('#no-button').addEventListener('click', $offModal);
+
+function $offModal(event) {
+  document.querySelector('#modal').setAttribute('class', 'modal hidden');
+}
+
+document.querySelector('#yes-button').addEventListener('click', $removeEntrycloseModal);
+
+function $removeEntrycloseModal(event) {
+  if (event.target.tagName === 'BUTTON') {
+    for (var i = 0; i < todos.length; i++) {
+      console.log(todos[i].address);
+      console.log($R.nextSibling.textContent.match(todos[i].address));
+      if ($R.nextSibling.textContent.match(todos[i].address) !== null) {
+        todos.splice(i, 1);
+      }
+    }
+    $R.closest('.row').remove();
+    document.querySelector('#modal').setAttribute('class', 'modal hidden');
   }
 }
