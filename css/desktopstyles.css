@@ -8,8 +8,10 @@
  */
 html,
 body {
+  justify-content: center;
+  max-width: 1200px;
   height: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -39,15 +41,16 @@ body {
 
 a {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  padding-left: 20%;
   text-align: center;
+  justify-content: center;
+  margin-right: 5%;
 }
 
 .locationDisplay,
 .chargerDisplay {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: #c4233b;
   font-weight: bold;
 }
@@ -58,7 +61,7 @@ a {
 
 .detailedForecast {
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 #banner-icon:hover,

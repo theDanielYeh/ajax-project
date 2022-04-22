@@ -6,20 +6,21 @@
   <title>Tesla Superchargers</title>
   <link rel="icon" href="images/Tesla red.jpeg">
   <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+  <link rel="stylesheet" media="screen and (max-width: 800px)" href="css/layout.css">
+  <link rel="stylesheet" media="screen and (max-width: 800px)" type="text/css" href="/css/styles.css">
+  <link rel="stylesheet" media="screen and (min-width: 801px)" href="/css/desktop.css">
+  <link rel="stylesheet" media="screen and (min-width: 801px)" href="/css/desktopstyles.css">
   <script src="https://kit.fontawesome.com/7188dd5dce.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
     <div id="banner" class="banner">
-      <img src="images/banner-icon.png" alt="">
+      <img id="banner-icon" src="images/banner-icon.png" alt="">
       <a id="locate">Locate</a>
       <a id="myfavorites" class="myfavorites">My Favorites</a>
     </div>
   </header>
-  <div id="map"></div>
+  <div id="map" class=""></div>
   <main>
     <div id="floating-panel" class="floating-panel">
       <b>Start: </b>
@@ -32,18 +33,31 @@
       </select>
     </div>
 
-    <div class="weatherDisplay">
+    <div id="weatherDisplay" class="weatherDisplay">
       <div class="weatherHeader"></div>
       <img src="" alt="" class="weatherIcon">
       <div class="detailedForecast"></div>
     </div>
 
     <div id='locationDisplay' class="locationDisplay"></div>
-    <div class="row">
+    <div id="home-row" class="row">
       <img id="homeBolt" class="homeBolt" src="" alt="">
       <div id="chargerDisplay" class="chargerDisplay"></div>
     </div>
+    <!-- Below is My Favorites DOM -->
+    <div id= "favorites-dom" class="my-favorites-parent-container hidden">
+      <!-- <div class="row">
+        <img class="homeBolt" src="images/bolt.png" alt="">
+        <div class="chargerDisplay"></div>
+      </div> -->
+    </div>
 
+    <div id="modal" class="modal hidden">
+      <div class="modal-box">Remove Saved Station?<br>
+        <button id="yes-button">Yes</button>
+        <button id="no-button">No</button>
+      </div>
+    </div>
 
   </main>
   <script src="js/data.js"></script>
