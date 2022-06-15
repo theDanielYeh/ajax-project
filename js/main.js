@@ -107,6 +107,7 @@ function success(position) {
             infowindow.setContent(response.results[0].formatted_address);
             // infowindow.open(map, marker);
             document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
+            document.querySelector('#loader').setAttribute('class', 'hidden');
           } else {
             window.alert('No results found');
           }

@@ -6,15 +6,17 @@
   <title>Tesla Superchargers</title>
   <link rel="icon" href="./images/Tesla red.jpeg">
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/loader.css">
   <link rel="stylesheet" media="screen and (max-width: 800px)" href="./css/layout.css">
   <link rel="stylesheet" media="screen and (max-width: 800px)" type="text/css" href="./css/styles.css">
-  <link rel="stylesheet" media="screen and (min-width: 801px)" href="./css/desktop.css">
+  <link rel="stylesheet" media="screen and (min-width: 801px)" href="./css/desktop-layout.css">
   <link rel="stylesheet" media="screen and (min-width: 801px)" href="./css/desktopstyles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <span id="loader" class="loader"></span>
   <div class="lds-ellipsis">
     <div></div>
     <div></div>
@@ -51,10 +53,12 @@
 
     <!-- <img src="./images/Roadster.png" class="roadster" alt="roadster picture"> -->
     <div id="locationDisplay" class="locationDisplay"></div>
-    <div id="home-row" class="row">
-      <img id="homeBolt" class="homeBolt" src="" alt="">
-      <!-- <i class="fa-solid fa-bolt homeBolt" id="homeBolt"></i> -->
-      <div id="chargerDisplay" class="chargerDisplay"></div>
+    <div class="home-row-box">
+      <div id="home-row" class="row">
+        <img id="homeBolt" class="homeBolt" src="" alt="">
+        <!-- <i class="fa-solid fa-bolt homeBolt" id="homeBolt"></i> -->
+        <div id="chargerDisplay" class="chargerDisplay"></div>
+      </div>
     </div>
     <!-- Below is My Favorites DOM -->
     <div id="favorites-dom" class="my-favorites-parent-container hidden">
@@ -73,6 +77,7 @@
 
     <div class="ldBar" data-value="50"></div>
   </main>
+  </script>
   <script src="./js/data.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script type="module" src="./js/main.js"></script>
