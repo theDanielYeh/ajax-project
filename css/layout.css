@@ -36,10 +36,12 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 1rem;
+  align-items: center;
 }
 
 .chargerDisplay {
   width: 50%;
+  max-width: 250px;
   margin-top: 7%;
 }
 

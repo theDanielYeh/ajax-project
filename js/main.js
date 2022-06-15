@@ -260,5 +260,6 @@ function $removeEntrycloseModal(event) {
     }
     $R.closest('.row').remove();
     document.querySelector('#modal').setAttribute('class', 'modal hidden');
+    document.querySelector('#homeBolt').setAttribute('src', './images/emptybolt.png');
   }
 }

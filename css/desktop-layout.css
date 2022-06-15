@@ -101,3 +101,8 @@
   margin: 3rem;
   padding: 0.5rem 1rem;
 }
+
+.my-favorites-parent-container {
+  display: flex;
+  justify-content: center;
+}
