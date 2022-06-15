@@ -36,14 +36,15 @@ body {
 }
 
 .banner {
-  background-color: #E31937;
+  background-color: #e31937;
 }
 
 .roadster {
   max-width: 1200px;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   opacity: 0.1;
+  z-index: -1;
 }
 
 a {
@@ -53,7 +54,7 @@ a {
   text-align: center;
   justify-content: center;
   margin-right: 5%;
-  text-shadow: black 0px 5px 10px;
+  text-shadow: black 0 5px 10px;
 }
 
 .locationDisplay,
@@ -68,8 +69,8 @@ a {
 }
 
 .detailedForecast {
-    color: white;
-    font-size: 1.5rem;
+  color: white;
+  font-size: 1.5rem;
 }
 
 #banner-icon:hover,
@@ -88,7 +89,7 @@ a {
   font-size: 2rem;
   border: black solid;
   border-radius: 15px;
-  background-color: #E31937;
+  background-color: #e31937;
   color: white;
 }
 
@@ -97,5 +98,5 @@ a {
   border-color: white;
   border-radius: 5px;
   background: white;
-  color: #E31937;
+  color: #e31937;
 }

@@ -106,7 +106,7 @@ function success(position) {
 
             infowindow.setContent(response.results[0].formatted_address);
             // infowindow.open(map, marker);
-            document.querySelector('#locationDisplay').textContent = 'Current Location Test: ' + infowindow.content;
+            document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
           } else {
             window.alert('No results found');
           }
@@ -116,7 +116,7 @@ function success(position) {
     geocodeLatLng(geocoder, map, infowindow);
 
     window.initMap = initMap;
-    document.querySelector('#homeBolt').setAttribute('src', '/images/emptybolt.png');
+    document.querySelector('#homeBolt').setAttribute('src', './images/emptybolt.png');
   }
 }
 
@@ -165,7 +165,7 @@ document.querySelector('#homeBolt').addEventListener('click', $Save);
 
 function $Save(event) {
   console.log($dataToSave.name);
-  event.target.setAttribute('src', '/images/bolt.png');
+  event.target.setAttribute('src', './images/bolt.png');
   $render();
   // if (event.target.getAttribute('src') === '/images/emptybolt.png') {
   //   event.target.setAttribute('src', '/images/bolt.png');
@@ -193,7 +193,7 @@ function $render(event) {
 
     var $B = document.createElement('img');
     $B.setAttribute('class', 'homeBolt');
-    $B.setAttribute('src', '/images/bolt.png');
+    $B.setAttribute('src', './images/bolt.png');
     $A.appendChild($B);
 
     var $C = document.createElement('div');
@@ -215,7 +215,7 @@ function $initialrender(object) {
 
   var $B = document.createElement('img');
   $B.setAttribute('class', 'homeBolt');
-  $B.setAttribute('src', '/images/bolt.png');
+  $B.setAttribute('src', './images/bolt.png');
   $A.appendChild($B);
 
   var $C = document.createElement('div');
