@@ -13,7 +13,7 @@ As a Tesla enthusiast, I know there are not many apps (at time of development) d
 - VSCode
 
 ## Live Demo
-Try the application live at [https://thedanielyeh.github.io/ajax-project/]
+Try the application live at [https://thedanielyeh.github.io/tesla-supercharger/]
 
 ## Features
 - Users can view their current location.
