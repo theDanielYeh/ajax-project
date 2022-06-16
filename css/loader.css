@@ -7,10 +7,11 @@
   color: red;
   display: flex;
   position: fixed;
-  top: 45%;
-  bottom: 55%;
-  left: 48%;
-  right: 52%;
+  top: 50%;
+  margin-top: -50px;
+  left: 50%;
+  margin-left: -50px;
+  z-index: 10;
 }
 
 .loader::before,
