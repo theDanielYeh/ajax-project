@@ -1,7 +1,9 @@
-var $X;
-var $Y;
-var $Z;
-var $Lat = 'Hello World';
+/* eslint-disable no-undef */
+/* eslint-disable no-inner-declarations */
+var $combinedCoordinates;
+var $latCoordinate;
+var $lngCoordinate;
+var $Lat;
 var $Lng;
 var $dataToSave = {};
 let service;
@@ -14,10 +16,9 @@ function getLocation() {
 }
 
 function success(position) {
-  document.querySelector('#start > option').value = position.coords.latitude + ', ' + position.coords.longitude;
   $Lat = position.coords.latitude;
   $Lng = position.coords.longitude;
-  console.log(document.querySelector('#start > option').value);
+  document.querySelector('#start > option').value = $Lat + ', ' + $Lng;
 
   initMap();
   function initMap() {
@@ -39,33 +40,27 @@ function success(position) {
     service.findPlaceFromQuery(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         for (let i = 0; i < results.length; i++) {
-          $X = results[i].geometry.location.lat() + ', ' + results[i].geometry.location.lng();
-          $Y = results[i].geometry.location.lat();
-          $Z = results[i].geometry.location.lng();
-          document.querySelector('#end > option').value = $X;
+          $latCoordinate = results[i].geometry.location.lat();
+          $lngCoordinate = results[i].geometry.location.lng();
+          $combinedCoordinates = $latCoordinate + ', ' + $lngCoordinate;
+          document.querySelector('#end > option').value = $combinedCoordinates;
           onChangeHandler();
           document.querySelector('#chargerDisplay').textContent = results[i].name + ': ' + results[i].formatted_address;
           $dataToSave.name = results[i].name;
           $dataToSave.address = results[i].formatted_address;
 
           // Below is for weather API //
-          console.log($Y);
-          function getPokemonData() {
+          function getWeatherData() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://api.weather.gov/points/' + $Y + ',' + $Z);
+            xhr.open('GET', 'https://api.weather.gov/points/' + $latCoordinate + ',' + $lngCoordinate);
             xhr.responseType = 'json';
             xhr.addEventListener('load', function () {
-              console.log(xhr.status);
-              console.log(xhr.response);
-              console.log(xhr.response.properties.gridX);
+              // learning: xhr.status available
               if (xhr.status === 200) {
                 var xhrTwo = new XMLHttpRequest();
                 xhrTwo.open('GET', 'https://api.weather.gov/gridpoints/' + xhr.response.properties.gridId + '/' + xhr.response.properties.gridX + ',' + xhr.response.properties.gridY + '/forecast');
                 xhrTwo.responseType = 'json';
                 xhrTwo.addEventListener('load', function () {
-                  console.log(xhrTwo.status);
-                  console.log(xhrTwo.response);
-                  console.log(xhrTwo.response.properties);
                   document.querySelector('.weatherIcon').setAttribute('src', xhrTwo.response.properties.periods[0].icon);
                   document.querySelector('.detailedForecast').textContent = xhrTwo.response.properties.periods[0].detailedForecast;
                 });
@@ -74,7 +69,7 @@ function success(position) {
             });
             xhr.send();
           }
-          getPokemonData();
+          getWeatherData();
         }
       }
     });
@@ -98,14 +93,7 @@ function success(position) {
         .then(response => {
           if (response.results[0]) {
             map.setZoom(14);
-
-            // const marker = new google.maps.Marker({
-            //   position: latlng,
-            //   map: map,
-            // });
-
             infowindow.setContent(response.results[0].formatted_address);
-            // infowindow.open(map, marker);
             document.querySelector('#locationDisplay').textContent = 'Current Location: ' + infowindow.content;
             document.querySelector('#loader').setAttribute('class', 'hidden');
           } else {
@@ -128,7 +116,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         query: document.getElementById('start').value
       },
       destination: {
-        // query: $X,
         query: document.getElementById('end').value
       },
       travelMode: google.maps.TravelMode.DRIVING
@@ -165,29 +152,20 @@ function $Favorites(event) {
 document.querySelector('#homeBolt').addEventListener('click', $Save);
 
 function $Save(event) {
-  console.log($dataToSave.name);
+  // $dataToSave.name might need for future
   event.target.setAttribute('src', './images/bolt.png');
   $render();
-  // if (event.target.getAttribute('src') === '/images/emptybolt.png') {
-  //   event.target.setAttribute('src', '/images/bolt.png');
-  //   $render();
-  // } else if (event.target.getAttribute('src') === '/images/bolt.png') {
-  //   event.target.setAttribute('src', '/images/emptybolt.png');
-  // }
 }
 
 function $render(event) {
   var $truefalse = 0;
-  console.log('test');
-  for (var i = 0; i < todos.length; i++) {
-    if ($dataToSave.name === todos[i].name) {
+  for (var i = 0; i < favCharger.length; i++) {
+    if ($dataToSave.name === favCharger[i].name) {
       $truefalse++;
-      console.log('should not save');
-      break;
+      return;
     }
   }
   if ($truefalse === 0) {
-    console.log('will save');
     var $A = document.createElement('div');
     $A.setAttribute('class', 'row');
     $favoritesDom.appendChild($A);
@@ -201,12 +179,12 @@ function $render(event) {
     $C.setAttribute('class', 'chargerDisplay');
     $C.textContent = $dataToSave.name + ': ' + $dataToSave.address;
     $A.appendChild($C);
-    todos.push($dataToSave);
+    favCharger.push($dataToSave);
   }
 }
 
-for (var i = 0; i < todos.length; i++) {
-  $initialrender(todos[i]);
+for (var i = 0; i < favCharger.length; i++) {
+  $initialrender(favCharger[i]);
 }
 
 function $initialrender(object) {
@@ -226,7 +204,7 @@ function $initialrender(object) {
 }
 
 // below is section for removing entries //
-var $R;
+var eventTrigger;
 
 document.querySelector('#favorites-dom').addEventListener('click', $toggleModal);
 
@@ -237,7 +215,7 @@ function $toggleModal(event) {
     } else {
       document.querySelector('#modal').setAttribute('class', 'modal hidden');
     }
-    $R = event.target;
+    eventTrigger = event.target;
   }
 }
 
@@ -251,14 +229,12 @@ document.querySelector('#yes-button').addEventListener('click', $removeEntryclos
 
 function $removeEntrycloseModal(event) {
   if (event.target.tagName === 'BUTTON') {
-    for (var i = 0; i < todos.length; i++) {
-      console.log(todos[i].address);
-      console.log($R.nextSibling.textContent.match(todos[i].address));
-      if ($R.nextSibling.textContent.match(todos[i].address) !== null) {
-        todos.splice(i, 1);
+    for (var i = 0; i < favCharger.length; i++) {
+      if (eventTrigger.nextSibling.textContent.match(favCharger[i].address) !== null) {
+        favCharger.splice(i, 1);
       }
     }
-    $R.closest('.row').remove();
+    eventTrigger.closest('.row').remove();
     document.querySelector('#modal').setAttribute('class', 'modal hidden');
     document.querySelector('#homeBolt').setAttribute('src', './images/emptybolt.png');
   }

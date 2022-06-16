@@ -1,14 +1,14 @@
 /* exported data */
-var todos = [];
+var favCharger = [];
 
-var previousTodosJSON = localStorage.getItem('javascript-local-storage');
-if (previousTodosJSON !== null) {
-  todos = JSON.parse(previousTodosJSON);
+var previousSavedJSON = localStorage.getItem('javascript-local-storage');
+if (previousSavedJSON !== null) {
+  favCharger = JSON.parse(previousSavedJSON);
 }
 
-window.addEventListener('beforeunload', oneFunction);
+window.addEventListener('beforeunload', stringifier);
 
-function oneFunction(event) {
-  var todosJSON = JSON.stringify(todos);
-  localStorage.setItem('javascript-local-storage', todosJSON);
+function stringifier(event) {
+  var savedJSON = JSON.stringify(favCharger);
+  localStorage.setItem('javascript-local-storage', savedJSON);
 }
