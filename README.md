@@ -24,7 +24,7 @@ Try the application live at [https://thedanielyeh.github.io/ajax-project/]
 - Teachers can delete the destination from favorites.
 
 ## Preview
-[insert file]
+![Kapture 2022-06-16 at 13 10 49](https://user-images.githubusercontent.com/96906988/174160842-00491800-2bbb-46a3-ad82-16e6cfafe703.gif)
 
 ## Future Development
 - Users can view restaurants near the destination.
