@@ -17,20 +17,14 @@
 </head>
 <body>
   <span id="loader" class="loader"></span>
-  <div class="lds-ellipsis">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
   <header>
     <div id="banner" class="banner">
-      <img id="banner-icon" src="./images/banner-icon.png" alt="">
-      <a id="locate">Locate</a>
+      <img id="banner-icon" class="banner-icon" src="./images/banner-icon.png" alt="">
+      <a id="locate" class="locate">Locate</a>
       <a id="myfavorites" class="myfavorites">My Favorites</a>
     </div>
   </header>
-  <div id="map" class=""></div>
+  <div id="map" class="map"></div>
   <main>
     <div id="floating-panel" class="floating-panel">
       <b>Start: </b>
@@ -44,28 +38,22 @@
     </div>
 
     <div id="weatherDisplay" class="weatherDisplay">
-      <!-- <div class="weatherHeader"></div> -->
       <img src="" alt="" class="weatherIcon">
       <div class="detailed-forecast-box">
         <div class="detailedForecast"></div>
       </div>
     </div>
 
-    <!-- <img src="./images/Roadster.png" class="roadster" alt="roadster picture"> -->
     <div id="locationDisplay" class="locationDisplay"></div>
     <div class="home-row-box">
       <div id="home-row" class="row">
         <img id="homeBolt" class="homeBolt" src="" alt="">
-        <!-- <i class="fa-solid fa-bolt homeBolt" id="homeBolt"></i> -->
         <div id="chargerDisplay" class="chargerDisplay"></div>
       </div>
     </div>
     <!-- Below is My Favorites DOM -->
     <div id="favorites-dom" class="my-favorites-parent-container hidden">
-      <!-- <div class="row">
-        <img class="homeBolt" src="images/bolt.png" alt="">
-        <div class="chargerDisplay"></div>
-      </div> -->
+      <!-- DOM Creation here -->
     </div>
 
     <div id="modal" class="modal hidden">
@@ -74,17 +62,13 @@
         <button id="no-button">No</button>
       </div>
     </div>
-
-    <div class="ldBar" data-value="50"></div>
   </main>
-  </script>
   <script src="./js/data.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script type="module" src="./js/main.js"></script>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCawnHCRLYgXle5MD9udxKMSA5MUpcDOz8&libraries=places"
     defer>
-      var $key = 'AIzaSyCawnHCRLYgXle5MD9udxKMSA5MUpcDOz8'
   </script>
 </body>
 </html>

@@ -147,7 +147,7 @@ document.querySelector('#myfavorites').addEventListener('click', $Favorites);
 var $favoritesDom = document.querySelector('#favorites-dom');
 
 function $Home(event) {
-  document.querySelector('#map').setAttribute('class', '');
+  document.querySelector('#map').setAttribute('class', 'map');
   document.querySelector('#weatherDisplay').setAttribute('class', 'weatherDisplay');
   document.querySelector('#locationDisplay').setAttribute('class', 'locationDisplay');
   document.querySelector('#home-row').setAttribute('class', 'row');
